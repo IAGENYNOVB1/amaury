@@ -10,7 +10,13 @@ Ce projet consiste à créer une **version site web de mon CV**, en utilisant l�
 * la responsivité
 * l’organisation du code
 
-L’objectif n’était pas de laisser l’IA produire un site « clé en main », mais de **collaborer avec elle** à travers des *prompts précis*, corrigés et affinés, pour améliorer progressivement le projet.
+L'objectif n'était pas de laisser l'IA produire un site « clé en main », mais de **collaborer avec elle** à travers des *prompts précis*, corrigés et affinés, pour améliorer progressivement le projet.
+
+---
+
+## 🌐 Site en ligne
+
+Le site est accessible à l'adresse suivante : **[https://amaury-aune.onrender.com/](https://amaury-aune.onrender.com/)**
 
 ---
 
