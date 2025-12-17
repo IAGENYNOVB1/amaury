@@ -623,3 +623,39 @@ a {
 a:hover {
   opacity: 0.8;
 }
+
+/* Social Links with Logos */
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+
+.social-link:hover {
+  background-color: rgba(37, 99, 235, 0.1);
+  transform: translateX(2px);
+}
+
+.social-logo {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.social-link:hover .social-logo {
+  transform: scale(1.1);
+}
+
+body.dark .social-logo[src*="linkedin"] {
+  filter: brightness(0) saturate(100%) invert(59%) sepia(73%) saturate(1247%) hue-rotate(193deg) brightness(105%) contrast(101%);
+}
+
+body.dark .social-logo[src*="github"] {
+  filter: brightness(0) saturate(100%) invert(100%);
+}
