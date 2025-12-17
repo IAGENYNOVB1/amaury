@@ -92,7 +92,7 @@ Le projet a été développé par itérations successives. À chaque étape, un 
 
 ### 🔹 Prompt 9 – Optimisation des projets
 
-> Peux-tu modifier la présentation des projets pour qu'ils apparaissent sous forme de carrousel ?
+> Peux-tu modifier la présentation des projets pour qu'ils apparaissent sous forme de carrousel.  Et que tu rajoute un systeme de filtrage par exemple ynov, ou 42 (les écoles que j'ai faites)
 
 ---
 
