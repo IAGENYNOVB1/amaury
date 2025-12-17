@@ -64,4 +64,65 @@ if (toggle) {
   });
 }
 
-
+// Gestion du formulaire de contact
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  // Initialiser EmailJS
+  // NOTE: Remplacer 'YOUR_PUBLIC_KEY' par votre clé publique EmailJS
+  emailjs.init('IoGmO9_7-datRxN4T');
+  
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const submitBtn = contactForm.querySelector('.submit-btn');
+    const formMessage = document.getElementById('formMessage');
+    
+    // Récupérer les données du formulaire
+    const formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      subject: document.getElementById('subject').value,
+      message: document.getElementById('message').value
+    };
+    
+    // Désactiver le bouton pendant l'envoi
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Envoi en cours...';
+    formMessage.className = 'form-message';
+    
+    try {
+      // Envoyer l'email via EmailJS
+      await emailjs.send('service_l5lwzun', 'template_km87f5t', {
+        to_email: 'aune.amaury1@gmail.com', // À remplacer par votre email
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        reply_to: formData.email
+      });
+      
+      // Succès
+      formMessage.className = 'form-message success';
+      formMessage.textContent = '✅ Message envoyé avec succès! Je vous répondrai rapidement.';
+      
+      // Réinitialiser le formulaire
+      contactForm.reset();
+      
+      // Réinitialiser le bouton après 2 secondes
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Envoyer';
+      }, 2000);
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi:', error);
+      
+      // Erreur
+      formMessage.className = 'form-message error';
+      formMessage.textContent = '❌ Erreur lors de l\'envoi du message. Veuillez réessayer ou me contacter directement.';
+      
+      // Réinitialiser le bouton
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Envoyer';
+    }
+  });
+}
