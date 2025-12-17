@@ -150,3 +150,89 @@ if (contactForm) {
     }
   });
 }
+
+// Gestion du carrousel de projets
+const carousel = document.querySelector('.carousel-track');
+const slides = document.querySelectorAll('.carousel-slide');
+const prevBtn = document.querySelector('.carousel-btn-prev');
+const nextBtn = document.querySelector('.carousel-btn-next');
+const dotsContainer = document.querySelector('.carousel-dots');
+
+if (carousel && slides.length > 0) {
+  let currentIndex = 0;
+  
+  // Créer les points de navigation
+  slides.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.classList.add('carousel-dot');
+    if (index === 0) dot.classList.add('active');
+    dot.setAttribute('aria-label', `Aller au projet ${index + 1}`);
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+  });
+  
+  const dots = document.querySelectorAll('.carousel-dot');
+  
+  function updateCarousel() {
+    const slideWidth = slides[0].offsetWidth;
+    carousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    
+    // Mettre à jour les points actifs
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentIndex);
+    });
+  }
+  
+  function goToSlide(index) {
+    currentIndex = index;
+    updateCarousel();
+  }
+  
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  }
+  
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateCarousel();
+  }
+  
+  // Event listeners
+  nextBtn.addEventListener('click', nextSlide);
+  prevBtn.addEventListener('click', prevSlide);
+  
+  // Navigation au clavier
+  document.addEventListener('keydown', (e) => {
+    if (carousel && carousel.closest('section').offsetParent !== null) {
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'ArrowRight') nextSlide();
+    }
+  });
+  
+  // Mise à jour lors du redimensionnement
+  window.addEventListener('resize', updateCarousel);
+  
+  // Support du swipe sur mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  carousel.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+  
+  carousel.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+  
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    if (touchStartX - touchEndX > swipeThreshold) {
+      nextSlide();
+    }
+    if (touchEndX - touchStartX > swipeThreshold) {
+      prevSlide();
+    }
+  }
+}

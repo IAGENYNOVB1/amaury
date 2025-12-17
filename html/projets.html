@@ -35,44 +35,62 @@
   <section>
     <h1>Projets</h1>
 
-    <div class="card">
-      <div class="card-header">
-        <h2>Portfolio Web Personnel (Ynov)</h2>
-        <span class="date">2025</span>
-      </div>
-      <p><strong>Description :</strong> Site personnel présentant mes compétences et projets avec design moderne et responsive.</p>
-      <p><strong>Compétences :</strong> HTML, CSS, JavaScript, Design Responsive</p>
-      <div class="tags">
-        <span class="tag">HTML</span>
-        <span class="tag">CSS</span>
-        <span class="tag">JavaScript</span>
-      </div>
-    </div>
+    <div class="carousel-container">
+      <button class="carousel-btn carousel-btn-prev" aria-label="Projet précédent">‹</button>
+      
+      <div class="carousel-wrapper">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="card">
+              <div class="card-header">
+                <h2>Portfolio Web Personnel (Ynov)</h2>
+                <span class="date">2025</span>
+              </div>
+              <p><strong>Description :</strong> Site personnel présentant mes compétences et projets avec design moderne et responsive.</p>
+              <p><strong>Compétences :</strong> HTML, CSS, JavaScript, Design Responsive</p>
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+            </div>
+          </div>
 
-    <div class="card">
-      <div class="card-header">
-        <h2>Get Next Line (42)</h2>
-        <span class="date">2024</span>
+          <div class="carousel-slide">
+            <div class="card">
+              <div class="card-header">
+                <h2>Get Next Line (42)</h2>
+                <span class="date">2024</span>
+              </div>
+              <p><strong>Description :</strong> Développement d'une fonction pour lire une ligne dans un fichier en C.</p>
+              <p><strong>Compétences :</strong> Gestion de fichiers, Allocation mémoire dynamique</p>
+              <div class="tags">
+                <span class="tag">C</span>
+                <span class="tag">File I/O</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="carousel-slide">
+            <div class="card">
+              <div class="card-header">
+                <h2>Libft (42)</h2>
+                <span class="date">2024</span>
+              </div>
+              <p><strong>Description :</strong> Création d'une bibliothèque de fonctions C utiles.</p>
+              <p><strong>Compétences :</strong> Programmation C, Gestion mémoire, Algorithmes</p>
+              <div class="tags">
+                <span class="tag">C</span>
+                <span class="tag">Algorithmes</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <p><strong>Description :</strong> Développement d'une fonction pour lire une ligne dans un fichier en C.</p>
-      <p><strong>Compétences :</strong> Gestion de fichiers, Allocation mémoire dynamique</p>
-      <div class="tags">
-        <span class="tag">C</span>
-        <span class="tag">File I/O</span>
-      </div>
-    </div>
-    
-    <div class="card">
-      <div class="card-header">
-        <h2>Libft (42)</h2>
-        <span class="date">2024</span>
-      </div>
-      <p><strong>Description :</strong> Création d'une bibliothèque de fonctions C utiles.</p>
-      <p><strong>Compétences :</strong> Programmation C, Gestion mémoire, Algorithmes</p>
-      <div class="tags">
-        <span class="tag">C</span>
-        <span class="tag">Algorithmes</span>
-      </div>
+
+      <button class="carousel-btn carousel-btn-next" aria-label="Projet suivant">›</button>
+      
+      <div class="carousel-dots"></div>
     </div>
   </section>
 </main>

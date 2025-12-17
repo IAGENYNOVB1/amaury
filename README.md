@@ -89,6 +89,13 @@ Le projet a été développé par itérations successives. À chaque étape, un 
 > Pour aller plus loin dans la page de contact, peux-tu en dessous de la rubrique disponibilité ajouter un formulaire fonctionnel qui renvoie les mails vers mon mail pro ?
 
 ---
+
+### 🔹 Prompt 9 – Optimisation des projets
+
+> Peux-tu modifier la présentation des projets pour qu'ils apparaissent sous forme de carrousel ?
+
+---
+
 ## 🚀 Fonctionnalités
 
 - Navigation responsive : menu burger avec ouverture/fermeture et clic extérieur
@@ -98,6 +105,7 @@ Le projet a été développé par itérations successives. À chaque étape, un 
 - Grille de cartes responsive sur la page d’accueil
 - Liens de contact directs (mailto, LinkedIn, GitHub)
 - Formulaire de contact fonctionnel avec envoi d'emails via EmailJS
+- Carrousel de projets interactif avec navigation tactile et clavier
 - Favicon personnalisé commun à toutes les pages
 - Structure multi‑pages avec chemins relatifs valides en local et en déploiement
 
