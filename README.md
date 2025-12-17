@@ -85,6 +85,19 @@ Le projet a été développé par itérations successives. À chaque étape, un 
 
 ---
 
+## 🚀 Fonctionnalités
+
+- Navigation responsive : menu burger avec ouverture/fermeture et clic extérieur
+- Lien actif mis en évidence selon la page courante
+- Mode sombre/clair avec persistance via `localStorage`
+- En‑tête sticky et animations douces (menu mobile, hover)
+- Grille de cartes responsive sur la page d’accueil
+- Liens de contact directs (mailto, LinkedIn, GitHub)
+- Favicon personnalisé commun à toutes les pages
+- Structure multi‑pages avec chemins relatifs valides en local et en déploiement
+
+---
+
 ## 🗂️ Arborescence du projet
 
 ```text
