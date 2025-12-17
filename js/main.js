@@ -67,15 +67,32 @@ if (toggle) {
 // Gestion du formulaire de contact
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-  // Initialiser EmailJS
-  // NOTE: Remplacer 'YOUR_PUBLIC_KEY' par votre clé publique EmailJS
-  emailjs.init('IoGmO9_7-datRxN4T');
+  // Vérifier que EmailJS est chargé
+  if (typeof emailjs === 'undefined') {
+    console.error('EmailJS n\'est pas chargé. Vérifiez que le script EmailJS est bien inclus dans la page.');
+    const formMessage = document.getElementById('formMessage');
+    if (formMessage) {
+      formMessage.className = 'form-message error';
+      formMessage.textContent = '⚠️ Le service d\'envoi d\'email n\'est pas disponible. Contactez-moi directement par email.';
+    }
+  } else {
+    // Initialiser EmailJS
+    emailjs.init('IoGmO9_7-datRxN4T');
+    console.log('EmailJS initialisé avec succès');
+  }
   
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const submitBtn = contactForm.querySelector('.submit-btn');
     const formMessage = document.getElementById('formMessage');
+    
+    // Vérifier que EmailJS est disponible
+    if (typeof emailjs === 'undefined') {
+      formMessage.className = 'form-message error';
+      formMessage.textContent = '⚠️ Le service d\'envoi d\'email n\'est pas disponible. Contactez-moi directement par email.';
+      return;
+    }
     
     // Récupérer les données du formulaire
     const formData = {
@@ -91,15 +108,21 @@ if (contactForm) {
     formMessage.className = 'form-message';
     
     try {
+      console.log('Tentative d\'envoi avec EmailJS...');
+      console.log('Service ID:', 'service_l5lwzun');
+      console.log('Template ID:', 'template_km87f5t');
+      console.log('Données:', formData);
+      
       // Envoyer l'email via EmailJS
-      await emailjs.send('service_l5lwzun', 'template_km87f5t', {
-        to_email: 'aune.amaury1@gmail.com', // À remplacer par votre email
+      const response = await emailjs.send('service_l5lwzun', 'template_km87f5t', {
         from_name: formData.name,
         from_email: formData.email,
         subject: formData.subject,
         message: formData.message,
         reply_to: formData.email
       });
+      
+      console.log('Réponse EmailJS:', response);
       
       // Succès
       formMessage.className = 'form-message success';
@@ -114,11 +137,12 @@ if (contactForm) {
         submitBtn.textContent = 'Envoyer';
       }, 2000);
     } catch (error) {
-      console.error('Erreur lors de l\'envoi:', error);
+      console.error('Erreur complète:', error);
+      console.error('Message d\'erreur:', error.text || error.message);
       
       // Erreur
       formMessage.className = 'form-message error';
-      formMessage.textContent = '❌ Erreur lors de l\'envoi du message. Veuillez réessayer ou me contacter directement.';
+      formMessage.textContent = `❌ Erreur lors de l'envoi: ${error.text || error.message || 'Erreur inconnue'}. Vérifiez la console.`;
       
       // Réinitialiser le bouton
       submitBtn.disabled = false;
