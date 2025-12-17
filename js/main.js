@@ -151,56 +151,115 @@ if (contactForm) {
   });
 }
 
-// Gestion du carrousel de projets
+// Gestion du carrousel de projets avec filtrage
 const carousel = document.querySelector('.carousel-track');
-const slides = document.querySelectorAll('.carousel-slide');
+const allSlides = document.querySelectorAll('.carousel-slide');
 const prevBtn = document.querySelector('.carousel-btn-prev');
 const nextBtn = document.querySelector('.carousel-btn-next');
 const dotsContainer = document.querySelector('.carousel-dots');
+const filterButtons = document.querySelectorAll('.filter-btn');
 
-if (carousel && slides.length > 0) {
+if (carousel && allSlides.length > 0) {
   let currentIndex = 0;
-  
+  let visibleSlides = Array.from(allSlides);
+  let currentFilter = 'all';
+
+  // Fonction pour filtrer les projets
+  function filterProjects(category) {
+    currentFilter = category;
+    currentIndex = 0;
+
+    // Réinitialiser toutes les slides
+    allSlides.forEach(slide => {
+      slide.style.display = 'none';
+    });
+
+    if (category === 'all') {
+      visibleSlides = Array.from(allSlides);
+      allSlides.forEach(slide => {
+        slide.style.display = 'block';
+      });
+    } else {
+      visibleSlides = Array.from(allSlides).filter(slide => slide.dataset.category === category);
+      visibleSlides.forEach(slide => {
+        slide.style.display = 'block';
+      });
+    }
+
+    // Mettre à jour les boutons de filtre
+    filterButtons.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.filter === category);
+    });
+
+    // Repositionner le carrousel
+    carousel.style.transform = 'translateX(0)';
+    
+    // Recréer les points de navigation
+    updateDots();
+    updateCarousel();
+  }
+
   // Créer les points de navigation
-  slides.forEach((_, index) => {
-    const dot = document.createElement('button');
-    dot.classList.add('carousel-dot');
-    if (index === 0) dot.classList.add('active');
-    dot.setAttribute('aria-label', `Aller au projet ${index + 1}`);
-    dot.addEventListener('click', () => goToSlide(index));
-    dotsContainer.appendChild(dot);
-  });
-  
-  const dots = document.querySelectorAll('.carousel-dot');
+  function updateDots() {
+    dotsContainer.innerHTML = '';
+    visibleSlides.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.classList.add('carousel-dot');
+      if (index === currentIndex) dot.classList.add('active');
+      dot.setAttribute('aria-label', `Aller au projet ${index + 1}`);
+      dot.addEventListener('click', () => goToSlide(index));
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  // Initialiser le carrousel
+  updateDots();
   
   function updateCarousel() {
-    const slideWidth = slides[0].offsetWidth;
+    if (visibleSlides.length === 0) return;
+
+    // Calculer la largeur d'une slide
+    const slideWidth = carousel.offsetWidth;
+    
+    // Repositionner selon les slides visibles seulement
     carousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
     
     // Mettre à jour les points actifs
+    const dots = document.querySelectorAll('.carousel-dot');
     dots.forEach((dot, index) => {
       dot.classList.toggle('active', index === currentIndex);
     });
   }
   
   function goToSlide(index) {
-    currentIndex = index;
-    updateCarousel();
+    if (index >= 0 && index < visibleSlides.length) {
+      currentIndex = index;
+      updateCarousel();
+    }
   }
   
   function nextSlide() {
-    currentIndex = (currentIndex + 1) % slides.length;
+    if (visibleSlides.length === 0) return;
+    currentIndex = (currentIndex + 1) % visibleSlides.length;
     updateCarousel();
   }
   
   function prevSlide() {
-    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    if (visibleSlides.length === 0) return;
+    currentIndex = (currentIndex - 1 + visibleSlides.length) % visibleSlides.length;
     updateCarousel();
   }
   
-  // Event listeners
-  nextBtn.addEventListener('click', nextSlide);
-  prevBtn.addEventListener('click', prevSlide);
+  // Event listeners pour le filtrage
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterProjects(btn.dataset.filter);
+    });
+  });
+
+  // Event listeners pour la navigation
+  if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+  if (prevBtn) prevBtn.addEventListener('click', prevSlide);
   
   // Navigation au clavier
   document.addEventListener('keydown', (e) => {

@@ -35,17 +35,24 @@
   <section>
     <h1>Projets</h1>
 
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">Tous</button>
+      <button class="filter-btn" data-filter="ynov">Ynov</button>
+      <button class="filter-btn" data-filter="42">42</button>
+    </div>
+
     <div class="carousel-container">
       <button class="carousel-btn carousel-btn-prev" aria-label="Projet précédent">‹</button>
       
       <div class="carousel-wrapper">
         <div class="carousel-track">
-          <div class="carousel-slide">
+          <div class="carousel-slide" data-category="ynov">
             <div class="card">
               <div class="card-header">
-                <h2>Portfolio Web Personnel (Ynov)</h2>
+                <h2>Portfolio Web Personnel</h2>
                 <span class="date">2025</span>
               </div>
+              <p><strong>École :</strong> Ynov</p>
               <p><strong>Description :</strong> Site personnel présentant mes compétences et projets avec design moderne et responsive.</p>
               <p><strong>Compétences :</strong> HTML, CSS, JavaScript, Design Responsive</p>
               <div class="tags">
@@ -56,12 +63,13 @@
             </div>
           </div>
 
-          <div class="carousel-slide">
+          <div class="carousel-slide" data-category="42">
             <div class="card">
               <div class="card-header">
-                <h2>Get Next Line (42)</h2>
+                <h2>Get Next Line</h2>
                 <span class="date">2024</span>
               </div>
+              <p><strong>École :</strong> 42</p>
               <p><strong>Description :</strong> Développement d'une fonction pour lire une ligne dans un fichier en C.</p>
               <p><strong>Compétences :</strong> Gestion de fichiers, Allocation mémoire dynamique</p>
               <div class="tags">
@@ -71,12 +79,13 @@
             </div>
           </div>
           
-          <div class="carousel-slide">
+          <div class="carousel-slide" data-category="42">
             <div class="card">
               <div class="card-header">
-                <h2>Libft (42)</h2>
+                <h2>Libft</h2>
                 <span class="date">2024</span>
               </div>
+              <p><strong>École :</strong> 42</p>
               <p><strong>Description :</strong> Création d'une bibliothèque de fonctions C utiles.</p>
               <p><strong>Compétences :</strong> Programmation C, Gestion mémoire, Algorithmes</p>
               <div class="tags">
