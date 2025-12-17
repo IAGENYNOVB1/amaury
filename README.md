@@ -84,7 +84,11 @@ Le projet a été développé par itérations successives. À chaque étape, un 
 > Dernière petite correction : en descendant sur la page en format réduit, il semble qu’au survol (sur version desktop), certaines rubriques passent devant la barre de navigation. Peux-tu corriger ce problème d’empilement ?
 
 ---
+### 🔹 Prompt 8 – Formulaire de contact
 
+> Pour aller plus loin dans la page de contact, peux-tu en dessous de la rubrique disponibilité ajouter un formulaire fonctionnel qui renvoie les mails vers mon mail pro ?
+
+---
 ## 🚀 Fonctionnalités
 
 - Navigation responsive : menu burger avec ouverture/fermeture et clic extérieur
@@ -93,6 +97,7 @@ Le projet a été développé par itérations successives. À chaque étape, un 
 - En‑tête sticky et animations douces (menu mobile, hover)
 - Grille de cartes responsive sur la page d’accueil
 - Liens de contact directs (mailto, LinkedIn, GitHub)
+- Formulaire de contact fonctionnel avec envoi d'emails via EmailJS
 - Favicon personnalisé commun à toutes les pages
 - Structure multi‑pages avec chemins relatifs valides en local et en déploiement
 
